@@ -1,0 +1,96 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gensyn-ai</title>
+</head>
+<body>
+ 1) Install Dependencies
+ Update System Packages
+sudo apt update && sudo apt upgrade -y
+
+2. Install General Utilities and Tools
+sudo apt install screen curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
+
+3. Install Python
+sudo apt install screen curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
+
+4. Install Node
+sudo apt update
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+sudo apt install -y nodejs
+node -v
+npm install -g yarn
+yarn -v
+
+5. Install Yarn
+curl -o- -L https://yarnpkg.com/install.sh | bash
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+source ~/.bashrc
+
+Clone the Repository
+git clone https://github.com/gensyn-ai/rl-swarm/
+
+
+
+
+
+Run the swarm
+
+CLI Method (GPU)
+screen -S swarm
+
+2- Get into the rl-swarm directory
+cd rl-swarm
+
+3- Install swarm
+python3 -m venv .venv
+
+source .venv/bin/activate
+# if not worked, then:
+. .venv/bin/activate
+
+./run_rl_swarm.sh
+
+
+
+
+
+1- Install docker, docker-compose with this guide
+
+Docker Method (GPU, Mac, CPU)
+
+2- Create a screen session
+screen -S swarm
+
+3- Get into the rl-swarm directory
+cd rl-swarm
+
+4- Install swarm
+Mac or CPU-Only
+docker compose run --rm --build -Pit swarm-cpu
+
+GPU
+docker compose run --rm --build -Pit swarm-gpu
+
+
+5) Login
+1- You have to receive Waiting for userData.json to be created... in logs
+2- Open login page in browser
+
+Local PC: Open http://localhost:3000/ in your browser
+GPU Cloud & VPS Users: Tunnel to external URL:
+1- Open a new terminal
+2- Install localtunnel:
+sudo npm install -g localtunnel
+3- Get a password:
+curl https://loca.lt/mytunnelpassword
+The password is actually your VPS IP
+4- Get URL
+lt --port 3000
+
+</body>
+</html>
