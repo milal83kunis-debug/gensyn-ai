@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gswarm Role/Telegram Bot</title>
+</head>
+<body>
+    
+    Step 1. Install Gswarm
+
+    # Install Go:
+sudo rm -rf /usr/local/go
+curl -L https://go.dev/dl/go1.22.4.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> $HOME/.bash_profile
+source .bash_profile
+go version
+
+go install github.com/Deep-Commit/gswarm/cmd/gswarm@latest
+
+
+Verify Installation
+gswarm --version
+
+Create a Telegram Bot:
+https://api.telegram.org/bot1234567890:ABCdefGHIjklMNOpqrsTUVwxyz/getUpdates
+
+Sample Response:
+{
+  "ok": true,
+  "result": [
+    {
+      "message": {
+        "message_id": 2021,
+        "from": {
+          "id": 123456789,
+          "is_bot": false,
+          "first_name": "GSwarm",
+          "username": "gswarm_user",
+          "language_code": "en"
+        },
+        "chat": {
+          "id": 123456789,
+          "first_name": "GSwarm",
+          "username": "gswarm_user",
+          "type": "private"
+        },
+        "date": 1704067200,
+        "text": "Hello bot!"
+      }
+    }
+  ]
+}
+
+Step 3. Run Gswarm Bot
+Run gswarm in your terminal now and follow the prompts to enter your bot token, chat ID, and EOA address
+
+
+
+
+Update Node
+
+1- Stop Node
+
+# list screens
+screen -ls
+
+# kill swarm screens (replace screen-id)
+screen -XS screen-id quit
+
+# You can kill by name
+screen -XS swarm quit
+
+
+2- Update Node Repository
+
+cd rl-swarm
+git pull
+
+Method 2: If you cloned official repo with local Changes:
+cl rl-swarm
+
+# Reset local changes:
+git reset --hard
+# Pull updates:
+git pull
+
+# Alternatively:
+git fetch
+git reset --hard origin/main
+
+
+Method 3: Cloned unofficial repo or Try from scratch (Recommended):
+cd rl-swarm
+
+# backup .pem
+cp ./swarm.pem ~/swarm.pem
+
+cd ..
+
+# delete rl-swarm dir
+rm -rf rl-swarm
+
+# clone new repo
+git clone https://github.com/gensyn-ai/rl-swarm
+
+cd rl-swarm
+
+# Recover .pem
+cp ~/swarm.pem ./swarm.pem
+
+3- Re-run Node
+
+
+CPU Configuration
+Fix 1:
+cd rl-swarm
+
+nano hivemind_exp/configs/mac/grpo-qwen-2.5-0.5b-deepseek-r1.yaml
+
+
+Fix 2: Use this as a run command instead:
+
+python3 -m venv .venv
+source .venv/bin/activate
+export PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 && ./run_rl_swarm.sh
+
+
+ Stuck at loading localhost page
+ cd rl-swarm
+
+sed -i '/^  return (/i\  useEffect(() => {\n    if (!user && !signerStatus.isInitializing) {\n      openAuthModal();\n    }\n  }, [user, signerStatus.isInitializing]);\n\n' modal-login/app/page.tsx
+
+
+Error: PS1 unbound variable
+sed -i '1i # ~/.bashrc: executed by bash(1) for non-login shells.\n\n# If not running interactively, don'\''t do anything\ncase $- in\n    *i*) ;;\n    *) return;;\nesac\n' ~/.bashrc
+
+
+Daemon failed to start in 15.0 seconds
+Enter rl-swarm directory:
+cd rl-swarm
+
+Activate python venv:
+python3 -m venv .venv
+source .venv/bin/activate
+
+Open Daemon config file:
+
+nano $(python3 -c "import hivemind.p2p.p2p_daemon as m; print(m.__file__)")
+
+</body>
+</html>
